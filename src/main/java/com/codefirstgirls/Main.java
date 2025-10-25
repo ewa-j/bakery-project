@@ -34,8 +34,7 @@ public class Main {
         printWelcomeMessage();
         listInitialOptions();
 
-        System.out.println("Please enter 1, 2 or 3 to choose.\n");
-        int categoryChoice = scanner.nextInt();
+        int categoryChoice = getUserChoice(1, 3, "Please enter 1, 2 or 3 to choose a category:");
         System.out.println("Thank you! How many would you like to order?");
         int amountToCreate = scanner.nextInt();
         System.out.println("Please choose a type.");
@@ -85,8 +84,22 @@ public class Main {
                 items.addAll(bakery.getItems(amountToCreate, bakeryItemType));
                 price = bakery.calculatePrice(amountToCreate, bakeryItemType);
             }
+            default -> System.out.println("Please choose a valid item.");
         }
         printOrderSummary(items, price);
+    }
+
+    private static int getUserChoice(int min, int max, String prompt) {
+        int choice;
+        while (true) {
+            System.out.println(prompt);
+            choice = scanner.nextInt();
+            if (choice >= min && choice <= max) {
+                break;
+            }
+            System.out.println("Invalid choice. Please enter a number between " + min + " and " + max);
+        }
+        return choice;
     }
 
     private static void printWelcomeMessage() {
