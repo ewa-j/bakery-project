@@ -71,3 +71,6 @@ Here's a summary:
 2 x Delicious Chocolate Fudge Cake (6.25)
 Total price: 12.50
 ```
+
+
+_Assignment X for the CFG +Masters Java Course, by Ewa J
