@@ -15,6 +15,22 @@ public class Main {
     public static void main(String[] args) {
 
         BakingService bakery = new BakingService();
+        boolean continueOrdering = true;
+
+        while (continueOrdering) {
+            handleSingleOrder(bakery);
+
+            System.out.println("\nWould you like to order anything else? (yes/no)");
+            scanner.nextLine();
+            String response = scanner.nextLine().trim().toLowerCase();
+
+            continueOrdering = response.equals("yes");
+        }
+
+        System.out.println("Thank you for visiting the Sweet Tooth Bakery!");
+    }
+
+    private static void handleSingleOrder(BakingService bakery) {
         printWelcomeMessage();
         listInitialOptions();
 
