@@ -20,6 +20,31 @@ Interactive console menu to select bakery items.
 5. Cleanly implemented enum Type with display names and prices.
 6. Demonstrates private helper methods, public methods, void methods, and methods with return types.
 
+### Running Instructions
+
+Ensure Java is installed on your system (Java 11+ recommended). You can check by running:
+```
+java -version
+```
+
+Compile the Java files:
+Open a terminal in the project directory and run:
+```
+javac *.java
+```
+
+Run the application:
+```
+java Main
+```
+
+Follow the prompts in the console:
+Select a category (Cake, Pastry, or Bread) by entering 1, 2, or 3.
+Enter the quantity you want to order.
+Choose the specific item type from the displayed options.
+After the order, you will see a summary including item names, prices, and total cost.
+The app will ask if you want to order anything else; type yes to continue or no to exit.
+
 ### Example run
 
 ```
