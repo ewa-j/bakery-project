@@ -26,26 +26,51 @@ public class Main {
 
         List<BakeryItem> items = new ArrayList<>();
         double price = 0;
+        Type bakeryItemType;
 
         switch (categoryChoice) {
             case 1 -> { // Cake
                 listCakeOptions();
                 System.out.println("Please enter 1, 2, 3 or 4 to choose.");
                 int typeChoice = scanner.nextInt();
-                Type cakeType = switch (typeChoice) {
+                bakeryItemType = switch (typeChoice) {
                     case 1 -> Type.SPONGE_CAKE;
                     case 2 -> Type.APPLE_PIE;
                     case 3 -> Type.CHOCOLATE_CAKE;
                     case 4 -> Type.BIRTHDAY_CAKE;
                     default -> throw new IllegalStateException("Item unavailable: " + typeChoice);
                 };
-                items.addAll(bakery.getCakes(amountToCreate, cakeType));
-                price = bakery.calculatePrice(amountToCreate, cakeType);
+                items.addAll(bakery.getItems(amountToCreate, bakeryItemType));
+                price = bakery.calculatePrice(amountToCreate, bakeryItemType);
+            }
+            case 2 -> { // Pastry
+                listPastryOptions();
+                System.out.println("Please enter 1, 2 or 3 to choose.");
+                int typeChoice = scanner.nextInt();
+                bakeryItemType = switch (typeChoice) {
+                    case 1 -> Type.CROISSANT;
+                    case 2 -> Type.CINNAMON_ROLL;
+                    case 3 -> Type.DANISH_PASTRY;
+                    default -> throw new IllegalStateException("Item unavailable: " + typeChoice);
+                };
+                items.addAll(bakery.getItems(amountToCreate, bakeryItemType));
+                price = bakery.calculatePrice(amountToCreate, bakeryItemType);
+            }
+            case 3 -> { // Bread
+                listBreadOptions();
+                System.out.println("Please enter 1, 2 or 3 to choose.");
+                int typeChoice = scanner.nextInt();
+                bakeryItemType = switch (typeChoice) {
+                    case 1 -> Type.SOURDOUGH;
+                    case 2 -> Type.BAGUETTE;
+                    case 3 -> Type.WHOLE_WHEAT;
+                    default -> throw new IllegalStateException("Item unavailable: " + typeChoice);
+                };
+                items.addAll(bakery.getItems(amountToCreate, bakeryItemType));
+                price = bakery.calculatePrice(amountToCreate, bakeryItemType);
             }
         }
-
         printOrderSummary(items, price);
-
     }
 
     private static void printWelcomeMessage() {
@@ -55,8 +80,8 @@ public class Main {
 
     private static void listInitialOptions() {
         System.out.println("1. Cake");
-        System.out.println("2. Pastry (WIP)");
-        System.out.println("3. Bread (WIP)");
+        System.out.println("2. Pastry");
+        System.out.println("3. Bread");
     }
 
     private static void listCakeOptions() {
@@ -66,11 +91,22 @@ public class Main {
         System.out.println("4. Birthday Cake");
     }
 
+    private static void listPastryOptions() {
+        System.out.println("1. Butter Croissant");
+        System.out.println("2. Cinnamon Roll");
+        System.out.println("3. Danish Raspberry Pastry");
+    }
+
+    private static void listBreadOptions() {
+        System.out.println("1. Sourdough Bread");
+        System.out.println("2. Baguette");
+        System.out.println("3. Whole wheat bread");
+    }
+
     private static void printOrderSummary(List<BakeryItem> items, double price) {
         System.out.println("Thank you for your order!");
         System.out.println("Here's a summary:\n");
         System.out.printf("%d x %s", items.size(), items.get(0).displayItem());
         System.out.printf("Total price: %.2f",price);
     }
-
 }
